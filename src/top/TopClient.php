@@ -20,7 +20,12 @@ class TopClient
 
 	protected $apiVersion = "2.0";
 
-	protected $sdkVersion = "top-sdk-php-20151012";
+	protected $sdkVersion = "top-sdk-php-20180326";
+
+	public function getAppkey()
+	{
+		return $this->appkey;
+	}
 
 	public function __construct($appkey = "",$secretKey = ""){
 		$this->appkey = $appkey;
@@ -34,7 +39,7 @@ class TopClient
 		$stringToBeSigned = $this->secretKey;
 		foreach ($params as $k => $v)
 		{
-			if(is_string($v) && "@" != substr($v, 0, 1))
+			if(!is_array($v) && "@" != substr($v, 0, 1))
 			{
 				$stringToBeSigned .= "$k$v";
 			}
@@ -70,9 +75,6 @@ class TopClient
 			$postMultipart = false;
 			foreach ($postFields as $k => $v)
 			{
-				if(!is_string($v))
-					continue ;
-
 				if("@" != substr($v, 0, 1))//判断是不是文件上传
 				{
 					$postBodyString .= "$k=" . urlencode($v) . "&"; 
