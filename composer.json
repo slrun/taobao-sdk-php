@@ -1,6 +1,6 @@
 {
     "name": "slrun/taobao-sdk-php",
-    "description": "淘宝/百川官方SDK",
+    "description": "淘宝开放平台官方SDK",
     "keywords": ["taobao-sdk-php"],
     "license": "MIT",
     "require-dev": {
